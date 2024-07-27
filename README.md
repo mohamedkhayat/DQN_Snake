@@ -35,8 +35,9 @@ To see the trained agent in action, execute:
 ```bash
 python play.py
 ```
-This will run the trained agent, allowing it to play the Snake game autonomously.
+This will run the trained agent, allowing it to play the Snake game autonomously, this agent was trained for close to 10 hours.
 
+The agent struggles a little in the early game but does quite well in the late game, if you find it to be slow and want to speed it up so that it gets to late game quicker just modify the FPS variable in play.py and set it to 60
 
 https://github.com/user-attachments/assets/22b83dd0-6eb0-4b0f-86b7-89301a3bf7b2
 
