@@ -13,8 +13,8 @@ This repository hosts a Deep Q-Network (DQN) agent designed to play the classic 
 
 1. Clone this repository:
     ```bash
-    git clone https://github.com/yourusername/dqn-snake-game.git
-    cd dqn-snake-game
+    git clone https://github.com/mohamedkhayat/DQN_Snake.git
+    cd DQN_Snake
     ```
 
 2. Install the required dependencies:
