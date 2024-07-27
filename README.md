@@ -46,12 +46,11 @@ https://github.com/user-attachments/assets/22b83dd0-6eb0-4b0f-86b7-89301a3bf7b2
 
 - `train.py`: Script to train the DQN agent.
 - `play.py`: Script to run the trained agent.
-- `dqn.py`: Core implementation of the DQN algorithm.
-- `snake_game.py`: Pygame-based implementation of the Snake game.
-- `model.py`: Neural network model definition used by the DQN agent.
-- `utils.py`: Utility functions for various tasks.
-- `requirements.txt`: List of dependencies required to run the project.
-
+- `Apple.py`: Code for the apples(collision detection and random spawning).
+- `Snake.py`: Code for the Snake (movement,display and logic).
+- `Network.py`: Neural network model definition used by the DQN agent.
+- `best_agent_model.pth` Pretrained weights
+  
 ## License
 
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for more details.
