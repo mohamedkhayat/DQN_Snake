@@ -5,7 +5,7 @@ import pygame
 import torch
 from train import get_state,SCREEN_HEIGHT,SCREEN_WIDTH
 
-FPS = 30
+FPS = 60
 
 def load_agent(agent):
     agent.model.load_state_dict(torch.load("best_agent_model.pth"))

@@ -24,7 +24,7 @@ class Agent:
     def __init__(self,state_dim,action_dim):
         self.state_dim = state_dim
         self.action_dim = action_dim
-        self.memory = deque(maxlen=300000)
+        self.memory = deque(maxlen=50000)
         self.gamma = 0.95
         self.epsilon = 1.0
         self.epsilon_min = 0.01

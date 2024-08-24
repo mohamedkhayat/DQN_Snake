@@ -9,7 +9,7 @@ import torch
 
 SCREEN_WIDTH = 640
 SCREEN_HEIGHT = 640
-FPS = 60
+FPS = 120
 
 
 def get_state(snake,apple):
@@ -22,7 +22,7 @@ def get_state(snake,apple):
     tail_y_norm = tail.y / SCREEN_HEIGHT
 
     manhattan_dist = abs(head.x - apple.position.x) + abs(head.y - apple.position.y)
-
+    #add time since last apple
     direction_to_apple = [
         (apple.position.x - head.x) / SCREEN_WIDTH,
         (apple.position.y - head.y) / SCREEN_HEIGHT
@@ -113,15 +113,16 @@ def main():
         snake.move()
         
         collision_penalty = snake.collision_detection()
-
-        if collision_penalty:
+        #tweak time
+        if collision_penalty or time_elapsed_since_apple/60 >= 30:
             time_elapsed_since_apple = 0
             latest_reward = reward
-            reward = 0
+            reward = -10
             done = True
             snake.reset()
             apple = Apple()
-            episode_rewards.append(reward)
+            reward = 0
+            episode_rewards.append(num_apples)
             episode_lengths.append(current_episode_length)
             current_episode_reward = 0
             current_episode_length = 0
@@ -138,11 +139,14 @@ def main():
             current_episode_length += 1
 
         next_state = get_state(snake, apple)
-
+    
+        if high_score < num_apples:
+            high_score = num_apples
+         
         text_surface = font.render(f'Reward: {reward:.2f}', True, (255, 255, 255))
         text_surface2 = font.render(f'Score: {num_apples}', True, (255, 255, 255))
         text_surface3 = font.render(f'High Score: {high_score}', True, (255, 255, 255))
-        text_surface4 = font.render(f'Time w/o apple: {time_elapsed_since_apple/60:.2f}', True, (255, 255, 255))
+        text_surface4 = font.render(f'Time w/o apple: {time_elapsed_since_apple/FPS:.2f}', True, (255, 255, 255))
 
         screen.blit(text_surface, (10, 10))
         screen.blit(text_surface2, (10, 30))
@@ -155,7 +159,7 @@ def main():
         if random_length_phase and (len(episode_rewards) >= length_randomization_interval):
             print("end random_length phase")
             random_length_phase = False
-            
+           
         if latest_reward > highest_reward:
                 highest_reward = latest_reward
                 print("saved model")
